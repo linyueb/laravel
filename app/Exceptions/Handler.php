@@ -36,7 +36,11 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
-        parent::report($exception);
+        if (PHP_SAPI == 'cli'){
+            parent::report($exception);
+        }else{
+            \Linyuee\ExceptionHandler::exception_handler($exception);
+        }
     }
 
     /**
